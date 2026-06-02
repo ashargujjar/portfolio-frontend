@@ -171,11 +171,10 @@ const AIChatbot = () => {
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm shadow-sm leading-relaxed ${
-                    msg.sender === "user"
+                  className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm shadow-sm leading-relaxed ${msg.sender === "user"
                       ? "rounded-tr-none bg-gradient-to-br from-indigo-600 to-blue-600 text-white"
                       : "rounded-tl-none bg-white border border-slate-100 text-slate-800 chatbot-response-bubble"
-                  }`}
+                    }`}
                 >
                   {msg.sender === "bot" ? (
                     <div
@@ -197,7 +196,7 @@ const AIChatbot = () => {
                 </div>
               </div>
             ))}
-            
+
             {isLoading && (
               <div className="flex w-full gap-2.5 justify-start">
                 <div className="flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 text-white shadow-sm animate-pulse">
@@ -282,7 +281,7 @@ const AIChatbot = () => {
         >
           {/* Pulsing glow background */}
           <span className="absolute -inset-1 rounded-full bg-gradient-to-tr from-indigo-500 to-blue-500 opacity-20 blur-sm group-hover:opacity-40 transition-opacity animate-pulse"></span>
-          
+
           <span className="relative z-10">
             {isOpen ? (
               <X size={22} className="transition-transform duration-300" />
@@ -293,7 +292,7 @@ const AIChatbot = () => {
               />
             )}
           </span>
-          
+
           {badgeVisible && !isOpen && (
             <span className="absolute -top-0.5 -right-0.5 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[9px] font-bold text-white ring-2 ring-white">
               <span className="absolute inset-0 rounded-full bg-rose-400 animate-ping opacity-75"></span>
