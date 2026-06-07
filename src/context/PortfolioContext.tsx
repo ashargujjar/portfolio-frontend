@@ -52,6 +52,7 @@ export const PortfolioProvider = ({ children }: { children: React.ReactNode }) =
   const [certificates, setCertificates] = useState(initialCertificates);
   const [profile, setProfile] = useState(initialProfile);
   const [skills, setSkills] = useState(initialSkillsData);
+  const [isContextLoading, setIsContextLoading] = useState(true);
 
   useEffect(() => {
     const fetchEducation = async () => {
@@ -106,9 +107,16 @@ export const PortfolioProvider = ({ children }: { children: React.ReactNode }) =
       }
     };
 
-    fetchEducation();
-    fetchExperience();
-    fetchCertificates();
+    const fetchAll = async () => {
+      await Promise.allSettled([
+        fetchEducation(),
+        fetchExperience(),
+        fetchCertificates(),
+      ]);
+      setIsContextLoading(false);
+    };
+
+    fetchAll();
   }, []);
 
   useEffect(() => {
@@ -127,7 +135,8 @@ export const PortfolioProvider = ({ children }: { children: React.ReactNode }) =
       experience, setExperience,
       certificates, setCertificates,
       profile, setProfile,
-      skills, setSkills
+      skills, setSkills,
+      isContextLoading
     }}>
       {children}
     </PortfolioContext.Provider>

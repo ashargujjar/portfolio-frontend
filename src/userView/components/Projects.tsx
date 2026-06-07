@@ -4,7 +4,7 @@ import type { Project } from "../../data/projects";
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL ?? "";
 
-const ProjectsSection = () => {
+const ProjectsSection = ({ onLoadComplete }: { onLoadComplete?: () => void }) => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,10 +32,11 @@ const ProjectsSection = () => {
         console.error("Error fetching projects:", error);
       } finally {
         setIsLoading(false);
+        onLoadComplete?.();
       }
     };
     fetchProjects();
-  }, []);
+  }, [onLoadComplete]);
 
   const uniqueStackCount = new Set(
     projects.flatMap((project) => project.techStack),

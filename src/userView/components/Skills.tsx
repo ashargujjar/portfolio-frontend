@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL ?? "";
 
-export const Skills = () => {
+export const Skills = ({ onLoadComplete }: { onLoadComplete?: () => void }) => {
   const [skillSet, setSkillSet] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,10 +22,11 @@ export const Skills = () => {
         console.error("Error fetching skills:", error);
       } finally {
         setIsLoading(false);
+        onLoadComplete?.();
       }
     };
     fetchSkills();
-  }, []);
+  }, [onLoadComplete]);
 
   return (
     <section id="skills" className="py-16 bg-slate-50 px-6">

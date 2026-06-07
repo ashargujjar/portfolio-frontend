@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL ?? "";
 
-const Blogs = () => {
+const Blogs = ({ onLoadComplete }: { onLoadComplete?: () => void }) => {
   const [articles, setArticles] = useState<any[]>([]);
   const [visibleCount, setVisibleCount] = useState(3);
 
@@ -23,10 +23,12 @@ const Blogs = () => {
         }
       } catch (error) {
         console.error("Failed to fetch blogs", error);
+      } finally {
+        onLoadComplete?.();
       }
     };
     fetchBlogs();
-  }, []);
+  }, [onLoadComplete]);
 
   return (
     <section id="articles" className="bg-slate-50 px-6 py-20">
