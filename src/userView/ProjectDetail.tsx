@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, GitBranch } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "./components/Nav";
 import type { Project } from "../data/projects";
+import { Spinner } from "./components/Spinner";
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL ?? "";
 
@@ -75,7 +76,7 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-slate-100 text-slate-900 flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center">
-          <span className="loading loading-spinner loading-lg text-sky-600"></span>
+          <Spinner color="sky" text="Loading project case study..." />
         </main>
       </div>
     );

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Spinner } from "./Spinner";
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL ?? "";
 
@@ -44,9 +45,7 @@ export const Skills = ({ onLoadComplete }: { onLoadComplete?: () => void }) => {
 
         <div className="min-h-[200px]">
           {isLoading ? (
-            <div className="flex h-full items-center justify-center py-20">
-              <span className="loading loading-spinner loading-lg text-purple-600"></span>
-            </div>
+            <Spinner color="purple" text="Loading technical skills..." />
           ) : skillSet.length === 0 ? (
             <div className="flex h-full items-center justify-center py-20 text-slate-500">
               No technical skills to display yet.

@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, Clock3, Calendar } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "./components/Nav";
 import Footer from "./Footer";
+import { Spinner } from "./components/Spinner";
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL ?? "";
 
@@ -36,10 +37,10 @@ const ArticleDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white text-slate-900">
+      <div className="min-h-screen bg-white text-slate-900 flex flex-col">
         <Navbar />
-        <main className="px-6 py-32 flex justify-center">
-          <p className="text-lg font-bold animate-pulse text-slate-400">Loading Article...</p>
+        <main className="flex-1 flex items-center justify-center py-32">
+          <Spinner color="indigo" text="Loading article content..." />
         </main>
       </div>
     );

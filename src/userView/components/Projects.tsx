@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProjectCard } from "./ProjectCard";
 import type { Project } from "../../data/projects";
+import { Spinner } from "./Spinner";
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL ?? "";
 
@@ -91,9 +92,7 @@ const ProjectsSection = ({ onLoadComplete }: { onLoadComplete?: () => void }) =>
 
         <div className="mt-12 min-h-[300px]">
           {isLoading ? (
-            <div className="flex h-full items-center justify-center py-20">
-              <span className="loading loading-spinner loading-lg text-sky-600"></span>
-            </div>
+            <Spinner color="sky" text="Loading projects..." />
           ) : projects.length === 0 ? (
             <div className="flex h-full items-center justify-center py-20 text-slate-500">
               No projects found.
